@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/imagen">
+        <file>fondoMalv.jpg</file>
+        <file>fondoMalv2.jpg</file>
+    </qresource>
+</RCC>
