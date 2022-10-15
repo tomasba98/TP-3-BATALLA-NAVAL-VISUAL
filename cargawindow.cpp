@@ -25,6 +25,7 @@ void CargaWindow::on_buttonJugar_clicked()
     int cantBarc = this->ui->setCantBarc->text().toInt();
     int tamMap = this->ui->setTamMatr->text().toInt();
     bool aleatorio = this->ui->checkBoxAleatorios->isChecked();
+
     this->hide();
     this->pantallaJuego = new MainWindow(cantBarc,tamMap,aleatorio);
     this->pantallaJuego->show();   

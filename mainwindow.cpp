@@ -35,26 +35,37 @@ MainWindow::MainWindow( int Cbarcos,int Tmap, bool alea,QWidget *parent)
 
 void MainWindow::on_agregarButton_clicked()
 {
-    int x,y =0;
+    int x,y ,tamanio =0;
     char orientacion;
 
     x = this->ui->posXLineEdit->text().toInt();
     y = this->ui->posYLineEdit->text().toInt();
     orientacion = this->ui->orientacionHV->currentText().toStdString()[0];
+    tamanio = this->Juego.getBarcos()[this->contBarcos]->getTamanio();
 
 
-    if(this->Juego.tablero1.lugarDisponible(x,y,this->Juego.getBarcos()[this->contBarcos]->getTamanio(),orientacion)){
+    if(this->Juego.tablero1.lugarDisponible(x,y,tamanio,orientacion)){
         if(this->contBarcos<this->cantBarcos){
+
             this->ui->nomBarcoLabel->setText(QString::fromStdString(this->Juego.getBarcos()[this->contBarcos]->getNombre()));
             this->ui->tamBarcoLabel_2->setText(QString::number(this->Juego.getBarcos()[this->contBarcos]->getTamanio()));
             this->Juego.agregarManual(this->Juego.getBarcos()[this->contBarcos],x,y,orientacion);
             this->contBarcos++;
+            this->ui->posXLineEdit->clear();
+            this->ui->posYLineEdit->clear();
         }
     }else{
         QMessageBox::information(this, "ALERTA", "LUGAR NO DISPONIBLE");
     }
 
 }
+
+void MainWindow::on_dispararButton_clicked()
+{
+
+}
+
+
 
 int MainWindow::getTamMapa() const
 {
@@ -101,3 +112,6 @@ void MainWindow::cargaManual()
 
     //    }
 }
+
+
+
