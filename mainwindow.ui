@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1031</width>
+    <height>744</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,31 +15,64 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#centralwidget {
-/*border-image:url(:/imagen/fondoMalv2.jpg);*/
+border-image:url(:/imagen/fondoMalv2.jpg);
 background-repeat : no-repeat;
 border:5px solid black;
+opacity: 0.6;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="cargaManualContainer" native="true">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>450</y>
-      <width>651</width>
+      <x>510</x>
+      <y>610</y>
+      <width>511</width>
       <height>81</height>
      </rect>
     </property>
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>30</x>
+       <x>10</x>
        <y>10</y>
-       <width>621</width>
+       <width>491</width>
        <height>71</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="cargaManualLayout">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>TAMANIO  -  </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+            <italic>false</italic>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>BARCO       - </string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
@@ -47,22 +80,54 @@ border:5px solid black;
         </property>
         <item>
          <widget class="QLabel" name="tamBarcoLabel_2">
+          <property name="font">
+           <font>
+            <family>Source Code Pro</family>
+            <pointsize>11</pointsize>
+            <italic>false</italic>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="text">
-           <string>BARCO</string>
+           <string>TAM</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLabel" name="nomBarcoLabel">
+          <property name="font">
+           <font>
+            <family>Source Code Pro</family>
+            <pointsize>11</pointsize>
+            <italic>true</italic>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="text">
-           <string>TAM</string>
+           <string>BARCOOOOOOO</string>
           </property>
          </widget>
         </item>
        </layout>
       </item>
       <item>
+       <widget class="Line" name="line_2">
+        <property name="lineWidth">
+         <number>1</number>
+        </property>
+        <property name="midLineWidth">
+         <number>10</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QComboBox" name="orientacionHV">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <item>
          <property name="text">
           <string>H</string>
@@ -83,6 +148,9 @@ border:5px solid black;
       </item>
       <item>
        <widget class="QPushButton" name="agregarButton">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
          <string>AGREGAR</string>
         </property>
@@ -94,9 +162,9 @@ border:5px solid black;
    <widget class="QWidget" name="horizontalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>390</y>
-      <width>591</width>
+      <x>800</x>
+      <y>540</y>
+      <width>211</width>
       <height>71</height>
      </rect>
     </property>
@@ -109,6 +177,9 @@ border:5px solid black;
      </item>
      <item>
       <widget class="QPushButton" name="dispararButton">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="text">
         <string>DISPARAR</string>
        </property>
@@ -116,13 +187,82 @@ border:5px solid black;
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>49</y>
+      <width>1001</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="tableros">
+     <item>
+      <layout class="QGridLayout" name="tablero1"/>
+     </item>
+     <item>
+      <widget class="Line" name="line">
+       <property name="lineWidth">
+        <number>1</number>
+       </property>
+       <property name="midLineWidth">
+        <number>50</number>
+       </property>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QGridLayout" name="tableroIA"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>10</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>TABLERO USER</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>10</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>TABLERO IA</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1031</width>
      <height>21</height>
     </rect>
    </property>

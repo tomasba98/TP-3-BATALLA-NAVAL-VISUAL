@@ -70,6 +70,12 @@ border:5px solid black;
       <bold>true</bold>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0.3);</string>
+    </property>
     <property name="text">
      <string>Aleatorios</string>
     </property>
@@ -88,6 +94,10 @@ border:5px solid black;
       <pointsize>19</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0.3);
+</string>
     </property>
     <property name="text">
      <string>Elija cantidad de barcos</string>
@@ -108,6 +118,9 @@ border:5px solid black;
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0.3);</string>
+    </property>
     <property name="text">
      <string>Elija tamanio Matriz</string>
     </property>
@@ -115,24 +128,45 @@ border:5px solid black;
    <widget class="QPushButton" name="buttonJugar">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>250</y>
+      <x>590</x>
+      <y>120</y>
       <width>181</width>
-      <height>71</height>
+      <height>91</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+      <italic>true</italic>
+      <bold>true</bold>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: #000080;
+color: white;</string>
     </property>
     <property name="text">
      <string>JOGA</string>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="buttonCargarPartida">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>250</y>
-      <width>181</width>
-      <height>71</height>
+      <x>30</x>
+      <y>310</y>
+      <width>161</width>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="text">
      <string>CARGAR PARTIDA</string>
@@ -153,7 +187,12 @@ border:5px solid black;
       <pointsize>38</pointsize>
       <italic>true</italic>
       <bold>true</bold>
+      <underline>true</underline>
+      <kerning>true</kerning>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">text-shadow: 0 0 3px #ff0000;</string>
     </property>
     <property name="text">
      <string>BATALLA NAVAL MALVINAS</string>

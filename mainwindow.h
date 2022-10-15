@@ -27,11 +27,14 @@ public:
     bool getAleatorios() const;
     void setAleatorios(bool newAleatorios);
 
-
+    void crearMapa();
     void cargaManual();
+    void actualizarMapa();
 
 protected:
 
+    QLabel *** tablero1;
+    QLabel *** tableroIA;
     Jugar Juego;
     int contBarcos = 0;
 
@@ -41,5 +44,6 @@ protected:
     bool aleatorios = true;
 private slots:
     void on_agregarButton_clicked();
+    void on_dispararButton_clicked();
 };
 #endif // MAINWINDOW_H

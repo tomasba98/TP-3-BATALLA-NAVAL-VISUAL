@@ -6,6 +6,11 @@
 
 
 
+void Matriz::setMatriz(char **newMatriz)
+{
+    matriz = newMatriz;
+}
+
 Matriz::Matriz()
 {
     this->numBarcos=0;
@@ -32,10 +37,10 @@ void Matriz::modificarMatriz(int x, int y, char c)
 }
 void Matriz::mostrarFlota()
 {
-    std::cout<<"\n   Barcos en flota: \n";
-    for (Barco b : this->cantBarcos){
-        std::cout<<std::setw(12)<<b.getNombre()<<"  -> "<<std::setw(7)<<"Life: "<<b.getVida()<<"/"<<b.getTamanio()<<std::endl;
-    }
+//    std::cout<<"\n   Barcos en flota: \n";
+//    for (Barco b : this->cantBarcos){
+//        std::cout<<std::setw(12)<<b.getNombre()<<"  -> "<<std::setw(7)<<"Life: "<<b.getVida()<<"/"<<b.getTamanio()<<std::endl;
+//    }
 }
 
 
@@ -44,15 +49,6 @@ char Matriz::submarinoHit()
     return this->submarinoHitChar;
 }
 
-
-
-void Matriz::chequearVector()
-{
-    std::cout<<"\nBarcos en flota: \n";
-    for (Barco b : this->cantBarcos){
-        std::cout<<b.getNombre()<<std::endl;
-    }
-}
 
 
 int Matriz::getTamanioMatriz() const
@@ -120,8 +116,7 @@ bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
     }else{
         return false;
     }
-
-
+    return false;
 }
 
 int Matriz::disparar(int x, int y)
@@ -135,7 +130,6 @@ int Matriz::disparar(int x, int y)
             this->matriz[y][x] = 'O';
             this->hit = false;
             this->submarinoHitChar = 'K';
-            std::cout<<"\nShot Agua!\n";
             break;
         case '1':
             this->matriz[y][x] = 'X';
@@ -400,6 +394,11 @@ bool Matriz::lugarLancha(int posX, int posY, int tamanio, char orientacion)
     }
 }
 
+char **Matriz::getMatriz()
+{
+    return this->matriz;
+}
+
 void Matriz::moverLancha()
 {
     for (Barco &b : this->cantBarcos){
@@ -487,20 +486,6 @@ void Matriz::crear_matriz(){
 
     }
 
-}
-
-void Matriz::mostrar_matriz()
-{
-        std::cout<<std::setw(6);
-        for(int i=0; i<this->tamanioMatriz; i++)
-            std::cout<<i<<std::setw(3);
-        std::cout<<std::endl;
-        for(int i=0; i<this->tamanioMatriz; i++){
-            std::cout<<i<<std::setw(3);
-            for(int j=0; j<tamanioMatriz; j++)
-                std::cout<<matriz[i][j]<<std::setw(3);
-            std::cout<<std::endl;
-        }
 }
 
 void Matriz::agregar_barco(Barco *barco)

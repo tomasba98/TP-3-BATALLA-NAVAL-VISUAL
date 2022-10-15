@@ -17,9 +17,7 @@ private:
 public:
     Matriz();
 
-    void chequearVector();
     void crear_matriz();
-    void mostrar_matriz();
     void agregar_barco(Barco *barco);
     int getTamanioMatriz() const;
     void setTamanioMatriz(int newTamanioMatriz);
@@ -34,6 +32,8 @@ public:
     void mostrarFlota();
     char submarinoHit();
     bool lugarLancha(int, int, int, char);
+    char** getMatriz();
+    void setMatriz(char **newMatriz);
 };
 
 #endif // MATRIZ_H
