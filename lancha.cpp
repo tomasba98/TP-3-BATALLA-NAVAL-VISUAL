@@ -1,6 +1,6 @@
 #include "lancha.h"
 #include <stdlib.h>
-#include<time.h>
+#include <time.h>
 
 Lancha::Lancha()
 {   Barco::setNum('1');

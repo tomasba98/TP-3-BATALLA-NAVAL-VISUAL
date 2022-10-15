@@ -33,15 +33,18 @@ border:5px solid black;
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>30</x>
        <y>10</y>
-       <width>591</width>
+       <width>621</width>
        <height>71</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="cargaManualLayout">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>0</number>
+        </property>
         <item>
          <widget class="QLabel" name="tamBarcoLabel_2">
           <property name="text">
@@ -59,7 +62,21 @@ border:5px solid black;
        </layout>
       </item>
       <item>
-       <widget class="QLineEdit" name="posXLineEdit_2"/>
+       <widget class="QComboBox" name="orientacionHV">
+        <item>
+         <property name="text">
+          <string>H</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>V</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="posXLineEdit"/>
       </item>
       <item>
        <widget class="QLineEdit" name="posYLineEdit"/>

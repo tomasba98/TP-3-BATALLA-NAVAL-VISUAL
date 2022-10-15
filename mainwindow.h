@@ -1,5 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "jugar.h"
+#include "barco.h"
+#include <QMessageBox>
 
 #include <QMainWindow>
 
@@ -24,10 +27,19 @@ public:
     bool getAleatorios() const;
     void setAleatorios(bool newAleatorios);
 
-private:
+
+    void cargaManual();
+
+protected:
+
+    Jugar Juego;
+    int contBarcos = 0;
+
     Ui::MainWindow *ui;
     int tamMapa;
     int cantBarcos;
     bool aleatorios = true;
+private slots:
+    void on_agregarButton_clicked();
 };
 #endif // MAINWINDOW_H

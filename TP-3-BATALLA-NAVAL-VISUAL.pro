@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     cargawindow.cpp \
+    jugar.cpp \
     main.cpp \
     mainwindow.cpp \
     barco.cpp \
@@ -17,19 +18,18 @@ SOURCES += \
     destructor.cpp \
     lancha.cpp \
     matriz.cpp \
-    menu.cpp \
     portaaviones.cpp \
     submarino.cpp
 
 HEADERS += \
     cargawindow.h \
+    jugar.h \
     mainwindow.h \
     barco.h \
     crucero.h \
     destructor.h \
     lancha.h \
     matriz.h \
-    menu.h \
     portaaviones.h \
     submarino.h
 
