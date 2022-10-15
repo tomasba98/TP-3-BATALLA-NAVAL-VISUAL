@@ -36,79 +36,7 @@ void Jugar::SeleccionarParametrosInicio(int cant,int tamanioMatriz)
     this->agregarAleatoriosIA();
 }
 
-void Jugar::jugar()
-{
-    /*while(!gameOver){
 
-
-
-
-        if(respuestaAleatorio == 'N' || respuestaAleatorio == 'n'){
-            for(Barco *b : this->Barcos){
-                cout<<"\n          TABLERO USER"<<endl;
-                tablero1.mostrar_matriz();
-                agregarManual(this->tablero1,b);
-                agregarAleatorios(this->tablero2,b);
-                this->cleanWindows();
-            }
-        }
-
-
-        int x,y = 99999;
-
-       while(tablero1.getNumBarcos()!=0 && tablero2.getNumBarcos()!=0){
-            this->cleanWindows();
-
-            cout<<"--------BATALLA NAVAL MALVINAS-----------\n";
-            if(y!=99999){
-                cout<<"DISPARO USER:";
-                this->tablero2.disparar(x,y);
-                cout<<"\nDISPARO IA:";
-                this->dispararBot(this->tablero1);
-                cout<<endl;
-                this->copiarTableroParaDisparar(tablero2,x,y);
-            }
-            cout<<"          MONITOR SHOTS"<<endl;
-            this->tableroParaDisparar.mostrar_matriz();
-            cout<<endl;
-            cout<<"          TABLERO USER"<<endl;
-            tablero1.mostrar_matriz();
-            tablero1.mostrarFlota();
-            cout<<endl;
-
-//            cout<<"          TABLERO IA"<<endl;
-//            tablero2.mostrar_matriz();
-//            tablero2.mostrarFlota();
-//            cout<<endl;
-
-            cout<<"DISPARE"<<endl;
-            cout<<"x: ";
-            cin>>x;
-            cout<<"y: ";
-            cin>>y;
-
-        }
-
-
-
-        if(tablero1.getNumBarcos()==0 && tablero2.getNumBarcos()==0){
-            cout<<endl;
-            cout<<"\nEMPATE!!\nLOS 2 SON MUY BUENOS!!!\n.";
-        }
-
-        if(tablero1.getNumBarcos()==0){
-            cout<<endl;
-            cout<<"\nGAME OVER!!\nGANO IA!!!\n.";
-        }
-        if(tablero2.getNumBarcos()==0){
-            cout<<endl;
-            cout<<"\nWIN!!\nGANASTE PAPA!!!\n.";
-        }
-
-
-        system("pause");
-    }*/
-}
 
 void Jugar::repetidorAleatorio()
 {
@@ -154,14 +82,6 @@ void Jugar::agregarAleatorios(Matriz &tb, Barco *barco)
 
 void Jugar::agregarManual( Barco *barco,int x,int y,char orientacion)
 {
-
-//    while(!tb.lugarDisponible(x,y,barco->getTamanio(),orientacion)){
-//        cout<<"\n\nNO SE PUEDE ESA POSICION"<<endl;
-//        cout<<"\nIngrese nuevas posiciones para el barco "<<barco->getNombre()<<" \nTamanio: "<<barco->getTamanio()<<endl;
-//        cout<<"posicion x: ";cin>>x;
-//        cout<<"posicion y: ";cin>>y;
-//        cout<<"orientacion H/V: ";cin>>orientacion;
-//     }
     barco->setX(x);
     barco->setY(y);
     barco->setOrientacion(orientacion);
