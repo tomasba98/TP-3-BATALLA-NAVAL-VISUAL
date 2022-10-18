@@ -18,6 +18,16 @@ void Matriz::setInfodisparo(int newInfodisparo)
     infodisparo = newInfodisparo;
 }
 
+const std::vector<Barco> &Matriz::getCantBarcos() const
+{
+    return cantBarcos;
+}
+
+void Matriz::setCantBarcos(const std::vector<Barco> &newCantBarcos)
+{
+    cantBarcos = newCantBarcos;
+}
+
 Matriz::Matriz()
 {
     this->numBarcos=0;

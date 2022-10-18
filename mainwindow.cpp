@@ -23,7 +23,9 @@ MainWindow::MainWindow( int Cbarcos,int Tmap, bool alea,QWidget *parent)
     this->Juego.SeleccionarParametrosInicio(Cbarcos,Tmap);
 
     if(this->aleatorios){
-        this->Juego.repetidorAleatorio();}
+        this->Juego.repetidorAleatorio();
+        this->mostrarFlota();
+    }
     else{
         this->ui->nomBarcoLabel->setText(QString::fromStdString(this->Juego.getBarcos()[this->contBarcos]->getNombre()));
         this->ui->tamBarcoLabel_2->setText(QString::number(this->Juego.getBarcos()[this->contBarcos]->getTamanio()));
@@ -58,6 +60,8 @@ void MainWindow::on_agregarButton_clicked()
             this->ui->posXLineEdit->clear();
             this->ui->posYLineEdit->clear();
             this->actualizarMapa();
+
+            this->mostrarFlota();
 
             if(this->contBarcos == this->cantBarcos) this->ui->cargaManualContainer->hide();
         }
@@ -97,6 +101,7 @@ void MainWindow::on_dispararButton_clicked()
 
 
         this->actualizarMapa();
+        this->mostrarFlota();
     }
 }
 
@@ -248,6 +253,21 @@ void MainWindow::infoHits(int c)
 
 void MainWindow::mostrarFlota()
 {
+    std::string nomBarco;
+    int vida,tam;
+
+    this->ui->mostrarFlotaLabel->clear();
+
+    for(int i=0;i<this->cantBarcos;i++){
+
+        nomBarco = this->Juego.tablero1.getCantBarcos()[i].getNombre();
+        vida = this->Juego.tablero1.getCantBarcos()[i].getVida();
+        tam = this->Juego.tablero1.getCantBarcos()[i].getTamanio();
+
+        QString QnomBarco = QString::fromStdString(nomBarco) + "        " + QString::number(vida)+ "/" + QString::number(tam);
+
+        this->ui->mostrarFlotaLabel->setText(this->ui->mostrarFlotaLabel->text() + "\n" + QnomBarco);
+    }
 
 }
 

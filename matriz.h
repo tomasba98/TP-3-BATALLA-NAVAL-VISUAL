@@ -38,6 +38,8 @@ public:
     void setMatriz(char **newMatriz);
     int getInfodisparo() const;
     void setInfodisparo(int newInfodisparo);
+    const std::vector<Barco> &getCantBarcos() const;
+    void setCantBarcos(const std::vector<Barco> &newCantBarcos);
 };
 
 #endif // MATRIZ_H

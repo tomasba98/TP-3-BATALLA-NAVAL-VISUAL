@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1031</width>
-    <height>778</height>
+    <height>895</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#centralwidget {
-border-image:url(:/imagen/fondoMalv2.jpg);
+/*border-image:url(:/imagen/fondoMalv2.jpg);*/
 background-repeat : no-repeat;
 border:5px solid black;
 opacity: 0.6;
@@ -26,7 +26,7 @@ opacity: 0.6;
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>610</y>
+      <y>760</y>
       <width>511</width>
       <height>81</height>
      </rect>
@@ -218,7 +218,7 @@ opacity: 0.6;
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="tableroUser">
     <property name="geometry">
      <rect>
       <x>190</x>
@@ -237,7 +237,7 @@ opacity: 0.6;
      <string>TABLERO USER</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="tableroIA_2">
     <property name="geometry">
      <rect>
       <x>740</x>
@@ -259,8 +259,8 @@ opacity: 0.6;
    <widget class="QWidget" name="horizontalLayoutWidget_4">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>620</y>
+      <x>530</x>
+      <y>640</y>
       <width>481</width>
       <height>82</height>
      </rect>
@@ -376,6 +376,54 @@ opacity: 0.6;
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="mostrarFlotaLabel_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>540</y>
+      <width>311</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+      <italic>true</italic>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0.3);</string>
+    </property>
+    <property name="text">
+     <string>BARCO                      VIDA</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="mostrarFlotaLabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>558</y>
+      <width>359</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="whatsThis">
+     <UInt>0</UInt>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgba(255, 255, 255, 0.3);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
