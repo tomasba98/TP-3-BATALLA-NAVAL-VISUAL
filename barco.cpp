@@ -39,17 +39,10 @@ void Barco::setNum(char newNum)
 
 void Barco::hit()
 
-{   std::cout<<std::endl;
-
+{
     if(this->getVida()!=0){
         this->setVida(this->getVida()-1);
-        std::cout<<"Barco was hit!!"<<std::endl;;
     }
-    if(this->getVida()==0){
-        std::cout<<std::endl;
-        std::cout<<this->nombre<<" hundido!!!\n";
-    }
-
 }
 
 int Barco::getY() const

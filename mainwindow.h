@@ -31,6 +31,10 @@ public:
     void cargaManual();
     void actualizarMapa();
 
+    void infoHits(int);
+
+    void mostrarFlota();
+
 protected:
 
     QLabel *** tablero1;
@@ -39,6 +43,7 @@ protected:
     int contBarcos = 0;
 
     Ui::MainWindow *ui;
+    int infoDisparo = 0;
     int tamMapa;
     int cantBarcos;
     bool aleatorios = true;

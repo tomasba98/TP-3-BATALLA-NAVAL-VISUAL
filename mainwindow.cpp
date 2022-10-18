@@ -32,6 +32,9 @@ MainWindow::MainWindow( int Cbarcos,int Tmap, bool alea,QWidget *parent)
 
     this->crearMapa();
 
+    // dejar en blanco los textLabel de la tabla de disparos
+    this->ui->labelInfoDisparoUser->clear();
+    this->ui->labelInfoDisparoIA->clear();
 
 }
 
@@ -77,11 +80,21 @@ void MainWindow::on_dispararButton_clicked()
     }
     else{
 
+        //DISPARO USER
         this->Juego.tablero2.disparar(x, y);
+        this->infoDisparo =  this->Juego.tablero2.getInfodisparo();
+        this->infoHits(1);
+
+        //DISPARO IA
         this->Juego.dispararBot(this->Juego.tablero1);
         this->Juego.copiarTableroParaDisparar(this->Juego.tablero2, x, y);
+        this->infoDisparo =  this->Juego.tablero1.getInfodisparo();
+        this->infoHits(2);
+
         this->ui->posXDisp->clear();
         this->ui->posYDisp->clear();
+
+
 
         this->actualizarMapa();
     }
@@ -185,7 +198,7 @@ void MainWindow::actualizarMapa()
     }
 
     //TABLERO IA
-    char** matriz2 = this->Juego.tableroParaDisparar.getMatriz();
+    char** matriz2 = this->Juego.tablero2.getMatriz();
 
     for (int i = 0; i < cantidad; i++) {
         for (int j = 0; j < cantidad; j++) {
@@ -193,5 +206,58 @@ void MainWindow::actualizarMapa()
             QString txt2((QChar(x)));
             this->tableroIA[i][j]->setText(txt2);
         }
-    }
+    }        
 }
+
+void MainWindow::infoHits(int c)
+{
+
+    if(c==1){
+        this->ui->labelInfoDisparoUser->clear();
+
+        switch (this->infoDisparo) {
+        case  -1:
+            this->ui->labelInfoDisparoUser->setText("Barco hundido!");
+            break;
+        case  0:
+            this->ui->labelInfoDisparoUser->setText("Shot Agua!");
+            break;
+        case  1:
+            this->ui->labelInfoDisparoUser->setText("Barco Hit!");
+            break;
+        }
+    }
+    if(c==2){
+        this->ui->labelInfoDisparoIA->clear();
+
+        switch (this->infoDisparo) {
+        case  -1:
+            this->ui->labelInfoDisparoIA->setText("Barco hundido!");
+            break;
+        case  0:
+            this->ui->labelInfoDisparoIA->setText("Shot Agua!");
+            break;
+        case  1:
+            this->ui->labelInfoDisparoIA->setText("Barco Hit!");
+            break;
+        }
+    }
+
+
+}
+
+void MainWindow::mostrarFlota()
+{
+
+}
+
+
+/*// Marco a donde disparo el user en los labelDisparoIA
+this->ui->labelResptDisparoIAX->setText(QString::number(disparoIAX));
+this->ui->labelResptDisparoIAY->setText(QString::number(disparoIAY));
+
+// Marco a donde disparo el user en los labelDisparoUser
+this->ui->labelResptDisparoUserX->setText(QString::number(x));
+this->ui->labelResptDisparoUserY->setText(QString::number(y));*/
+
+

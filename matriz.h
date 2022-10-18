@@ -14,6 +14,8 @@ private:
     bool hit;
     char submarinoHitChar = 'K';
 
+    int infodisparo=0;
+
 public:
     Matriz();
 
@@ -34,6 +36,8 @@ public:
     bool lugarLancha(int, int, int, char);
     char** getMatriz();
     void setMatriz(char **newMatriz);
+    int getInfodisparo() const;
+    void setInfodisparo(int newInfodisparo);
 };
 
 #endif // MATRIZ_H

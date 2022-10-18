@@ -17,6 +17,19 @@ void Jugar::setTablero1(const Matriz &newTablero1)
     tablero1 = newTablero1;
 }
 
+void Jugar::setDisparosIa(int x, int y)
+{
+    this->disparosIA[0] = x;
+    this->disparosIA[1] = y;
+}
+
+int *Jugar::getDisparosIa()
+{
+    return disparosIA;
+}
+
+
+
 Jugar::Jugar()
 {
     gameOver = false;
@@ -94,8 +107,9 @@ void Jugar::dispararBot(Matriz &tb)
     int x = rand()%9+1;
     int y = rand()%9+1;
 
-    tb.disparar(x,y);
+    this->setDisparosIa(x, y);
 
+    tb.disparar(x,y);
 }
 
 void Jugar::crearBarcos(int cant)

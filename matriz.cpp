@@ -3,12 +3,19 @@
 #include <iomanip>
 #include <stdlib.h>
 
-
-
-
 void Matriz::setMatriz(char **newMatriz)
 {
     matriz = newMatriz;
+}
+
+int Matriz::getInfodisparo() const
+{
+    return infodisparo;
+}
+
+void Matriz::setInfodisparo(int newInfodisparo)
+{
+    infodisparo = newInfodisparo;
 }
 
 Matriz::Matriz()
@@ -128,7 +135,10 @@ int Matriz::disparar(int x, int y)
         switch(caract){
         case '~':
             this->matriz[y][x] = 'O';
+
             this->hit = false;
+            this->infodisparo = 0;
+
             this->submarinoHitChar = 'K';
             break;
         case '1':
@@ -138,8 +148,12 @@ int Matriz::disparar(int x, int y)
             for (Barco &b : this->cantBarcos){
                 if(b.getNum()=='1'){
                     if(x==b.getX() && y==b.getY()){
+
+                        this->infodisparo = 1;
                         b.hit();
+
                         if(b.explotado()){
+                            this->infodisparo = -1;
                             this->eliminarBarco(b);
                         }
                     }
@@ -161,8 +175,12 @@ int Matriz::disparar(int x, int y)
                             int tamanio =b.getTamanio();
                             for (int i=0;i<=tamanio;i++){
                                 if(BarcoX==x){
+
+                                    this->infodisparo = 1;
                                     b.hit();
+
                                     if(b.explotado()){
+                                        this->infodisparo = -1;
                                         this->eliminarBarco(b);
                                     }
                                 }
@@ -178,8 +196,12 @@ int Matriz::disparar(int x, int y)
                             int tamanio =b.getTamanio();
                             for (int i=0;i<=tamanio;i++){
                                 if(BarcoY==y){
+
+                                    this->infodisparo = 1;
                                     b.hit();
+
                                     if(b.explotado()){
+                                        this->infodisparo = -1;
                                         this->eliminarBarco(b);
                                     }
                                 }
@@ -205,8 +227,12 @@ int Matriz::disparar(int x, int y)
                             int tamanio =b.getTamanio();
                             for (int i=0;i<=tamanio;i++){
                                 if(BarcoX==x){
+
+                                    this->infodisparo = 1;
                                     b.hit();
+
                                     if(b.explotado()){
+                                        this->infodisparo = -1;
                                         this->eliminarBarco(b);
                                     }
                                 }
@@ -222,8 +248,12 @@ int Matriz::disparar(int x, int y)
                             int tamanio =b.getTamanio();
                             for (int i=0;i<=tamanio;i++){
                                 if(BarcoY==y){
+
+                                    this->infodisparo = 1;
                                     b.hit();
+
                                     if(b.explotado()){
+                                        this->infodisparo = -1;
                                         this->eliminarBarco(b);
                                     }
                                 }
@@ -249,8 +279,12 @@ int Matriz::disparar(int x, int y)
                             int tamanio =b.getTamanio();
                             for (int i=0;i<=tamanio;i++){
                                 if(BarcoX==x){
+
+                                    this->infodisparo = 1;
                                     b.hit();
+
                                     if(b.explotado()){
+                                        this->infodisparo = -1;
                                         this->eliminarBarco(b);
                                     }
                                 }
@@ -266,8 +300,10 @@ int Matriz::disparar(int x, int y)
                             int tamanio =b.getTamanio();
                             for (int i=0;i<=tamanio;i++){
                                 if(BarcoY==y){
+                                    this->infodisparo = 1;
                                     b.hit();
                                     if(b.explotado()){
+                                        this->infodisparo = -1;
                                         this->eliminarBarco(b);
                                     }
                                 }
@@ -299,10 +335,14 @@ int Matriz::disparar(int x, int y)
                                         this->matriz[y][x-1]='X';
                                         this->matriz[y][x+1]='X';
                                         b.explotado();
+
+                                        this->infodisparo = -1;
                                         this->eliminarBarco(b);
                                     }else{
+                                        this->infodisparo = 1;
                                         b.hit();
                                         if(b.explotado()){
+                                            this->infodisparo = -1;
                                             this->eliminarBarco(b);
                                         }
                                         this->matriz[y][x] = 'X';
@@ -328,10 +368,13 @@ int Matriz::disparar(int x, int y)
                                         this->matriz[y-1][x]='X';
                                         this->matriz[y+1][x]='X';
                                         b.explotado();
+                                        this->infodisparo = -1;
                                         this->eliminarBarco(b);
                                     }else{
+                                        this->infodisparo = 1;
                                         b.hit();
                                         if(b.explotado()){
+                                            this->infodisparo = -1;
                                             this->eliminarBarco(b);
                                         }
                                         this->matriz[y][x] = 'X';
