@@ -137,6 +137,9 @@ void MainWindow::setAleatorios(bool newAleatorios)
     aleatorios = newAleatorios;
 }
 
+
+
+
 //FUNCIONES---------------------------------------------
 
 void MainWindow::cargaManual()
@@ -267,6 +270,17 @@ void MainWindow::mostrarFlota()
         QString QnomBarco = QString::fromStdString(nomBarco) + "        " + QString::number(vida)+ "/" + QString::number(tam);
 
         this->ui->mostrarFlotaLabel->setText(this->ui->mostrarFlotaLabel->text() + "\n" + QnomBarco);
+    }
+
+    for(int i=0;i<this->cantBarcos;i++){
+
+        nomBarco = this->Juego.tablero2.getCantBarcos()[i].getNombre();
+        vida = this->Juego.tablero2.getCantBarcos()[i].getVida();
+        tam = this->Juego.tablero2.getCantBarcos()[i].getTamanio();
+
+        QString QnomBarco = QString::fromStdString(nomBarco) + "        " + QString::number(vida)+ "/" + QString::number(tam);
+
+        this->ui->mostrarFlotaIALabel->setText(this->ui->mostrarFlotaIALabel->text() + "\n" + QnomBarco);
     }
 
 }

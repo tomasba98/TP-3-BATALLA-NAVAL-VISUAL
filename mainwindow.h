@@ -1,7 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "jugar.h"
-#include "barco.h"
 #include <QMessageBox>
 
 #include <QMainWindow>

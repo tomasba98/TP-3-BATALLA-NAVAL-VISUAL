@@ -37,6 +37,9 @@ border:5px solid black;
       <height>31</height>
      </rect>
     </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
    <widget class="QLineEdit" name="setTamMatr">
     <property name="geometry">
@@ -146,11 +149,11 @@ border:5px solid black;
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #000080;
+     <string notr="true">background-color: rgba(0,0,100,0.3);
 color: white;</string>
     </property>
     <property name="text">
-     <string>JOGA</string>
+     <string>JUGAR</string>
     </property>
     <property name="checkable">
      <bool>false</bool>
