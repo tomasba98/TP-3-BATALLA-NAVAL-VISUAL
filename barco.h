@@ -17,6 +17,7 @@ private:
 
 public:
     Barco();
+    Barco(char ori, int v,int x, int y, int id, char t);
     int getTamanio() const ;
     void setTamanio(int );
     char getOrientacion() const ;

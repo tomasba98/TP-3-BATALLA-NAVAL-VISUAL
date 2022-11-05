@@ -16,7 +16,7 @@ MainWindow::MainWindow( int Tmap,QWidget *parent) : QMainWindow(parent), ui(new 
 
     this->ui->cargaManualContainer->hide();
 
-    this->Juego.cargarJuego();
+    this->Juego.cargarJuego(this->Juego.tablero1);
 
     this->crearMapa();
 
@@ -99,9 +99,8 @@ void MainWindow::on_dispararButton_clicked()
     }
     else{
 
-        //DISPARO USER
-        this->Juego.tablero2.disparar(x, y);
-        This->Juego.dispararUser(x,y);
+        //DISPARO USER        
+        this->Juego.dispararUser(x,y);
         this->infoDisparo =  this->Juego.tablero2.getInfodisparo();
         this->infoHits(1);
 
@@ -256,6 +255,7 @@ void MainWindow::infoHits(int c)
         }
     }
     if(c==2){
+
         this->ui->labelInfoDisparoIA->clear();
 
         switch (this->infoDisparo) {
@@ -283,20 +283,22 @@ void MainWindow::mostrarFlota()
 
     for(int i=0;i<this->cantBarcos;i++){
 
-        nomBarco = this->Juego.tablero1.getCantBarcos()[i].getNombre();
-        vida = this->Juego.tablero1.getCantBarcos()[i].getVida();
-        tam = this->Juego.tablero1.getCantBarcos()[i].getTamanio();
+        nomBarco = this->Juego.tablero1.getCantBarcos()[i]->getNombre();
+        vida = this->Juego.tablero1.getCantBarcos()[i]->getVida();
+        tam = this->Juego.tablero1.getCantBarcos()[i]->getTamanio();
 
         QString QnomBarco = QString::fromStdString(nomBarco) + "        " + QString::number(vida)+ "/" + QString::number(tam);
 
         this->ui->mostrarFlotaLabel->setText(this->ui->mostrarFlotaLabel->text() + "\n" + QnomBarco);
     }
 
+    this->ui->mostrarFlotaIALabel->clear();
+
     for(int i=0;i<this->cantBarcos;i++){
 
-        nomBarco = this->Juego.tablero2.getCantBarcos()[i].getNombre();
-        vida = this->Juego.tablero2.getCantBarcos()[i].getVida();
-        tam = this->Juego.tablero2.getCantBarcos()[i].getTamanio();
+        nomBarco = this->Juego.tablero2.getCantBarcos()[i]->getNombre();
+        vida = this->Juego.tablero2.getCantBarcos()[i]->getVida();
+        tam = this->Juego.tablero2.getCantBarcos()[i]->getTamanio();
 
         QString QnomBarco = QString::fromStdString(nomBarco) + "        " + QString::number(vida)+ "/" + QString::number(tam);
 

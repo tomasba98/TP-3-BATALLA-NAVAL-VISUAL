@@ -38,7 +38,7 @@ bool Jugar:: guardarBarcos()
 
         for (auto it : this->tablero1.getCantBarcos()){
 
-            b = asignar(it);
+            b = asignar(*it);
 
             archivo1.write((char*)&b,sizeof(BarcosStr));
         }
@@ -52,7 +52,7 @@ bool Jugar:: guardarBarcos()
     if(archivo2.is_open()){
         for (auto it : this->tablero2.getCantBarcos()){
 
-            b = asignar(it);
+            b = asignar(*it);
 
             archivo2.write((char*)&b,sizeof(BarcosStr));
         }
@@ -102,11 +102,139 @@ bool Jugar::guardarDisparos()
     return true;
 }
 
+bool Jugar::guardarMatriz()
+{
+    fstream archivo("tamMatriz.bin", ios::binary | ios::out);
+
+    int tam = this->tablero1.getTamanioMatriz();
+
+    if(archivo.is_open()){
+
+            archivo.write((char*)&tam,sizeof(int));
+
+        archivo.close();
+
+    }else{
+        return false;
+    }
+
+    return true;
+}
+
 bool Jugar::guardarJuego()
 {
 
     if(!this->guardarBarcos()) return false;
     if(!this->guardarDisparos()) return false;
+    if(!this->guardarMatriz()) return false;
+
+    return true;
+}
+
+bool Jugar::cargarBarcos()
+{
+    BarcosStr b;
+
+    std::vector<Barco*> vector;
+
+    fstream archivo1("Disparos1.bin", ios::binary | ios::in);
+    fstream archivo2("Disparos2.bin", ios::binary | ios::in);
+
+    if(archivo1.is_open()){     //char ori, int v,int x, int y, int id, char t
+        while(archivo1.read((char*)&b,sizeof(BarcosStr))){
+            switch(b.tipo){
+            case 'c':
+                vector.emplace_back(new Crucero(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
+                break;
+            case 'p':
+                vector.emplace_back(new Portaaviones(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
+                break;
+            case 'd':
+                vector.emplace_back(new Destructor(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
+                break;
+            case 'l':
+                vector.emplace_back(new Lancha(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
+                break;
+            case 's':
+                vector.emplace_back(new Submarino(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
+                break;
+            }
+        }this->tablero1.setCantBarcos(vector);
+
+        archivo1.close();
+    }else{
+        return false;
+    }
+
+    vector.clear();
+
+    if(archivo2.is_open()){     //char ori, int v,int x, int y, int id, char t
+        while(archivo2.read((char*)&b,sizeof(BarcosStr))){
+            switch(b.tipo){
+            case 'c':
+                vector.emplace_back(new Crucero(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
+                break;
+            case 'p':
+                vector.emplace_back(new Portaaviones(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
+                break;
+            case 'd':
+                vector.emplace_back(new Destructor(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
+                break;
+            case 'l':
+                vector.emplace_back(new Lancha(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
+                break;
+            case 's':
+                vector.emplace_back(new Submarino(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
+                break;
+            }
+        }this->tablero2.setCantBarcos(vector);
+
+        archivo2.close();
+    }else{
+        return false;
+    }
+
+    return true;
+}
+
+bool Jugar::cargarDisparos(Matriz &tb )
+{
+    Disparos dis;
+
+    fstream archivo1("Disparos1.bin", ios::binary | ios::out | ios::trunc);
+    fstream archivo2("Disparos2.bin", ios::binary | ios::out | ios::trunc);
+
+
+    if(archivo1.is_open()){
+
+        while(archivo1.read((char*)&dis,sizeof(Disparos))){
+            this->dispararUser(dis.x,dis.y);
+        }
+        archivo1.close();
+
+    }else{
+        return false;
+    }
+
+    if(archivo2.is_open()){
+
+        while(archivo2.read((char*)&dis,sizeof(Disparos))){
+            tb.disparar(dis.x,dis.y);
+            this->DisparosIA.push_back({dis.x,dis.y});
+        }
+        archivo2.close();
+    }else{
+        return false;
+    }
+
+    return true;
+}
+
+bool Jugar::cargarJuego(Matriz &tb)
+{
+
+    if(!this->cargarBarcos()) return false;
+    if(!this->cargarDisparos(tb)) return false;
 
     return true;
 }

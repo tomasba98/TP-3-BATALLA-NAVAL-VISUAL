@@ -6,6 +6,7 @@ class Submarino : public Barco
 {
 public:
     Submarino();
+    Submarino(char ori, int v,int x, int y, int id, char t);
 
 
 };

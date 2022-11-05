@@ -1,5 +1,6 @@
 #include "cargawindow.h"
 #include "ui_cargawindow.h"
+#include "fstream"
 
 CargaWindow::CargaWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -32,3 +33,31 @@ void CargaWindow::on_buttonJugar_clicked()
 
 }
 
+
+void CargaWindow::on_buttonCargarPartida_clicked()
+{
+     int tam = this->tamMatriz();
+     this->hide();
+     this->pantallaJuego = new MainWindow(tam);
+     this->pantallaJuego->show();
+}
+
+int CargaWindow::tamMatriz()
+{
+    std::fstream archivo("tamMatriz.bin", std::ios::binary | std::ios::in);
+
+    int tam = 0;
+
+    if(archivo.is_open()){
+
+            archivo.read((char*)&tam,sizeof(int));
+
+
+        archivo.close();
+
+    }else{
+        QMessageBox::information(this, "ERROR", "CARGA MATRIZ");
+    }
+
+    return tam;
+}

@@ -9,6 +9,7 @@ private:
 
 public:
     Crucero();
+    Crucero(char ori, int v,int x, int y, int id, char t);
 
 
 };

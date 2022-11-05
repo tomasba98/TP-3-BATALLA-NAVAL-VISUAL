@@ -6,6 +6,16 @@ Barco::Barco()
 
 }
 
+Barco::Barco( char ori, int v,int x, int y, int id, char t)
+{
+    this->orientacion = ori;
+    this->vida = v;
+    this->X = x;
+    this->Y = y;
+    this->id = id;
+    this->tipo = t;
+}
+
 char Barco::getTipo() const
 {
     return tipo;

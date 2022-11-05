@@ -6,6 +6,7 @@
 #include "portaaviones.h"
 #include "destructor.h"
 #include "lancha.h"
+#include "qtmetamacros.h"
 #include "submarino.h"
 #include <stdlib.h>
 #include <vector>
@@ -32,10 +33,7 @@ class Jugar
 {
 protected:
 
-
-
-public:
-    int tamanioMat;
+public:    
     bool gameOver;
     Matriz tablero1;    //user
     Matriz tablero2;    //ia
@@ -62,11 +60,17 @@ public:
     void setDisparosIa(int x, int y);
     int* getDisparosIa();
     void dispararUser(int,int);
+    bool guardarJuego();
+    bool cargarJuego(Matriz &tb);
 
+private slots:
     bool guardarBarcos();
     bool guardarDisparos();
-    bool guardarJuego();
-    void cargarJuego();
+    bool guardarMatriz();
+
+    bool cargarBarcos();
+    bool cargarDisparos(Matriz &tb);
+
 };
 
 #endif // JUGAR_H

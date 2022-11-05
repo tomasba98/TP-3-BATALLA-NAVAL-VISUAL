@@ -7,6 +7,7 @@ class Destructor : public Barco
 {
 public:
     Destructor();
+    Destructor(char ori, int v,int x, int y, int id, char t);
 
 
 };

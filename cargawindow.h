@@ -18,7 +18,11 @@ public:
 
 private slots:
 
+    int tamMatriz();
+
     void on_buttonJugar_clicked();
+
+    void on_buttonCargarPartida_clicked();
 
 private:
     MainWindow *pantallaJuego = nullptr;

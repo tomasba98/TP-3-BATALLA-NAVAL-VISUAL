@@ -6,6 +6,7 @@ class Portaaviones : public Barco
 {
 public:
     Portaaviones();
+    Portaaviones(char ori, int v,int x, int y, int id, char t);
 
 
 };
