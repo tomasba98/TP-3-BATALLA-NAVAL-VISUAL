@@ -283,9 +283,9 @@ void MainWindow::mostrarFlota()
 
     for(int i=0;i<this->cantBarcos;i++){
 
-        nomBarco = this->Juego.tablero1.getCantBarcos()[i]->getNombre();
-        vida = this->Juego.tablero1.getCantBarcos()[i]->getVida();
-        tam = this->Juego.tablero1.getCantBarcos()[i]->getTamanio();
+        nomBarco = this->Juego.tablero1.getCantBarcos()[i].getNombre();
+        vida = this->Juego.tablero1.getCantBarcos()[i].getVida();
+        tam = this->Juego.tablero1.getCantBarcos()[i].getTamanio();
 
         QString QnomBarco = QString::fromStdString(nomBarco) + "        " + QString::number(vida)+ "/" + QString::number(tam);
 
@@ -296,9 +296,9 @@ void MainWindow::mostrarFlota()
 
     for(int i=0;i<this->cantBarcos;i++){
 
-        nomBarco = this->Juego.tablero2.getCantBarcos()[i]->getNombre();
-        vida = this->Juego.tablero2.getCantBarcos()[i]->getVida();
-        tam = this->Juego.tablero2.getCantBarcos()[i]->getTamanio();
+        nomBarco = this->Juego.tablero2.getCantBarcos()[i].getNombre();
+        vida = this->Juego.tablero2.getCantBarcos()[i].getVida();
+        tam = this->Juego.tablero2.getCantBarcos()[i].getTamanio();
 
         QString QnomBarco = QString::fromStdString(nomBarco) + "        " + QString::number(vida)+ "/" + QString::number(tam);
 

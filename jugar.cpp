@@ -38,7 +38,7 @@ bool Jugar:: guardarBarcos()
 
         for (auto it : this->tablero1.getCantBarcos()){
 
-            b = asignar(*it);
+            b = asignar(it);
 
             archivo1.write((char*)&b,sizeof(BarcosStr));
         }
@@ -52,7 +52,7 @@ bool Jugar:: guardarBarcos()
     if(archivo2.is_open()){
         for (auto it : this->tablero2.getCantBarcos()){
 
-            b = asignar(*it);
+            b = asignar(it);
 
             archivo2.write((char*)&b,sizeof(BarcosStr));
         }
@@ -112,13 +112,12 @@ bool Jugar::guardarMatriz()
 
             archivo.write((char*)&tam,sizeof(int));
 
+
         archivo.close();
 
     }else{
         return false;
     }
-
-    return true;
 }
 
 bool Jugar::guardarJuego()
@@ -140,6 +139,7 @@ bool Jugar::cargarBarcos()
     fstream archivo1("Disparos1.bin", ios::binary | ios::in);
     fstream archivo2("Disparos2.bin", ios::binary | ios::in);
 
+
     if(archivo1.is_open()){     //char ori, int v,int x, int y, int id, char t
         while(archivo1.read((char*)&b,sizeof(BarcosStr))){
             switch(b.tipo){
@@ -159,7 +159,11 @@ bool Jugar::cargarBarcos()
                 vector.emplace_back(new Submarino(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
                 break;
             }
-        }this->tablero1.setCantBarcos(vector);
+        }
+
+        for(size_t i = 0; i<vector.size(); i++){
+            this->tablero1.agregar_barco(vector[i]);
+        }
 
         archivo1.close();
     }else{
@@ -187,7 +191,11 @@ bool Jugar::cargarBarcos()
                 vector.emplace_back(new Submarino(b.orientacion,b.vida,b.X,b.Y,b.id,b.tipo));
                 break;
             }
-        }this->tablero2.setCantBarcos(vector);
+        }
+
+        for(size_t i = 0; i<vector.size(); i++){
+            this->tablero2.agregar_barco(vector[i]);
+        }
 
         archivo2.close();
     }else{

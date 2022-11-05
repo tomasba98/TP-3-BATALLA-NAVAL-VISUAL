@@ -10,7 +10,7 @@ private:
     char **matriz;
     int tamanioMatriz = 11;
     int numBarcos;
-    std::vector <Barco*> cantBarcos;
+    std::vector <Barco> cantBarcos;
     bool hit;
     char submarinoHitChar = 'K';
 
@@ -26,7 +26,7 @@ public:
     bool lugarDisponible(int, int, int, char);
     int disparar(int, int);
     void moverLancha();
-    void eliminarBarco(Barco* b);
+    void eliminarBarco(Barco b);
     int getNumBarcos() const;
     void setNumBarcos(int newNumBarcos);
     bool matrizHit();
@@ -38,8 +38,8 @@ public:
     void setMatriz(char **newMatriz);
     int getInfodisparo() const;
     void setInfodisparo(int newInfodisparo);
-    const std::vector<Barco*> &getCantBarcos() const;
-    void setCantBarcos(const std::vector<Barco*> &newCantBarcos);
+    const std::vector<Barco> &getCantBarcos() const;
+    void setCantBarcos(const std::vector<Barco> &newCantBarcos);
 };
 
 #endif // MATRIZ_H

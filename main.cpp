@@ -5,10 +5,7 @@
 
 int main(int argc, char *argv[])
 {
-    srand(time(NULL));
-
-    //Menu Juego;
-    //Juego.jugar();
+    srand(time(NULL));    
 
     QApplication a(argc, argv);
     CargaWindow pantallaCarga;
