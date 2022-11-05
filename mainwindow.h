@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 #include "jugar.h"
 #include <QMessageBox>
-
+#include "QAction"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -48,6 +48,7 @@ protected:
     bool aleatorios = true;
 private slots:
     void on_agregarButton_clicked();
-    void on_dispararButton_clicked();
+    void on_dispararButton_clicked();    
+    void on_actionGuardar_triggered();
 };
 #endif // MAINWINDOW_H

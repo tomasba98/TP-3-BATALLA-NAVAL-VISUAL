@@ -8,9 +8,24 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-MainWindow::MainWindow( int Cbarcos,int Tmap, bool alea,QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow( int Tmap,QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+
+    this->tamMapa = Tmap;
+
+    this->ui->cargaManualContainer->hide();
+
+    this->Juego.cargarJuego();
+
+    this->crearMapa();
+
+    // dejar en blanco los textLabel de la tabla de disparos
+    this->ui->labelInfoDisparoUser->clear();
+    this->ui->labelInfoDisparoIA->clear();
+}
+
+MainWindow::MainWindow( int Cbarcos,int Tmap, bool alea,QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -86,6 +101,7 @@ void MainWindow::on_dispararButton_clicked()
 
         //DISPARO USER
         this->Juego.tablero2.disparar(x, y);
+        This->Juego.dispararUser(x,y);
         this->infoDisparo =  this->Juego.tablero2.getInfodisparo();
         this->infoHits(1);
 
@@ -105,6 +121,12 @@ void MainWindow::on_dispararButton_clicked()
     }
 }
 
+
+void MainWindow::on_actionGuardar_triggered()
+{
+    if(!this->Juego.guardarJuego()) QMessageBox::information(this, "ERROR", "EL JUEGO NO SE PUDO GUARDAR");
+    else QMessageBox::information(this, "INFO", "JUEGO GUARDADO EXITOSAMENTE");
+}
 
 
 int MainWindow::getTamMapa() const
@@ -136,8 +158,6 @@ void MainWindow::setAleatorios(bool newAleatorios)
 {
     aleatorios = newAleatorios;
 }
-
-
 
 
 //FUNCIONES---------------------------------------------
@@ -293,5 +313,8 @@ this->ui->labelResptDisparoIAY->setText(QString::number(disparoIAY));
 // Marco a donde disparo el user en los labelDisparoUser
 this->ui->labelResptDisparoUserX->setText(QString::number(x));
 this->ui->labelResptDisparoUserY->setText(QString::number(y));*/
+
+
+
 
 

@@ -6,6 +6,16 @@ Barco::Barco()
 
 }
 
+char Barco::getTipo() const
+{
+    return tipo;
+}
+
+void Barco::setTipo(char newTipo)
+{
+    tipo = newTipo;
+}
+
 int Barco::getId() const
 {
     return id;

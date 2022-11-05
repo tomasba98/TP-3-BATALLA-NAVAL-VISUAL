@@ -13,6 +13,7 @@ private:
     int X;
     int Y;
     int id;
+    char tipo;
 
 public:
     Barco();
@@ -37,6 +38,8 @@ public:
     void setNombre(const std::string &newNombre);
     int getId() const;
     void setId(int newId);
+    char getTipo() const;
+    void setTipo(char newTipo);
 };
 
 #endif // BARCO_H

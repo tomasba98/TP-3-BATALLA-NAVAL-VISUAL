@@ -1,6 +1,115 @@
 #include "jugar.h"
+#include "fstream"
+#include <cstring>
 
 using namespace std;
+
+Jugar::Jugar()
+{
+    gameOver = false;
+}
+
+BarcosStr asignar(Barco it){
+    BarcosStr b;
+
+    b.X = it.getX();
+    b.Y - it.getY();
+    strcpy(b.nombre,it.getNombre().c_str());
+    b.num = it.getNum();
+    b.orientacion = it.getOrientacion();
+    b.vida = it.getVida();
+    b.tamanio = it.getTamanio();
+    b.id = it.getId();
+    b.tipo = it.getTipo();
+
+    return b;
+}
+
+bool Jugar:: guardarBarcos()
+{
+    BarcosStr b;
+
+    string nombre = "Barcos";
+
+    fstream archivo1("Barcos1.bin", ios::binary | ios::out | ios::trunc);
+    fstream archivo2("Barcos2.bin", ios::binary | ios::out | ios::trunc);
+
+    if(archivo1.is_open()){
+
+        for (auto it : this->tablero1.getCantBarcos()){
+
+            b = asignar(it);
+
+            archivo1.write((char*)&b,sizeof(BarcosStr));
+        }
+
+        archivo1.close();
+
+    }else{
+        return false;
+    }
+
+    if(archivo2.is_open()){
+        for (auto it : this->tablero2.getCantBarcos()){
+
+            b = asignar(it);
+
+            archivo2.write((char*)&b,sizeof(BarcosStr));
+        }
+
+        archivo2.close();
+
+    }else{
+        return false;
+    }
+
+    return true;
+}
+
+bool Jugar::guardarDisparos()
+{
+    Disparos d;
+
+    fstream archivo1("Disparos1.bin", ios::binary | ios::out | ios::trunc);
+    fstream archivo2("Disparos2.bin", ios::binary | ios::out | ios::trunc);
+
+    if(archivo1.is_open()){
+        for(auto it : this->DisparosUser){
+            d.x = it.first;
+            d.y = it.second;
+            archivo1.write((char*)&d,sizeof(Disparos));
+        }
+
+        archivo1.close();
+
+    }else{
+        return false;
+    }
+
+    if(archivo2.is_open()){
+        for(auto it : this->DisparosIA){
+            d.x = it.first;
+            d.y = it.second;
+            archivo2.write((char*)&d,sizeof(Disparos));
+        }
+
+        archivo2.close();
+
+    }else{
+        return false;
+    }
+
+    return true;
+}
+
+bool Jugar::guardarJuego()
+{
+
+    if(!this->guardarBarcos()) return false;
+    if(!this->guardarDisparos()) return false;
+
+    return true;
+}
 
 const std::vector<Barco *> &Jugar::getBarcos() const
 {
@@ -17,22 +126,12 @@ void Jugar::setTablero1(const Matriz &newTablero1)
     tablero1 = newTablero1;
 }
 
-void Jugar::setDisparosIa(int x, int y)
+void Jugar::dispararUser(int x, int y)
 {
-    this->disparosIA[0] = x;
-    this->disparosIA[1] = y;
-}
 
-int *Jugar::getDisparosIa()
-{
-    return disparosIA;
-}
+    this->DisparosUser.push_back({x,y});
 
-
-
-Jugar::Jugar()
-{
-    gameOver = false;
+    this->tablero2.disparar(x, y);
 }
 
 void Jugar::SeleccionarParametrosInicio(int cant,int tamanioMatriz)
@@ -104,10 +203,12 @@ void Jugar::agregarManual( Barco *barco,int x,int y,char orientacion)
 
 void Jugar::dispararBot(Matriz &tb)
 {
-    int x = rand()%9+1;
-    int y = rand()%9+1;
+    int tm = tb.getTamanioMatriz();
 
-    this->setDisparosIa(x, y);
+    int x = rand()%tm+1;
+    int y = rand()%tm+1;
+
+    this->DisparosIA.push_back({x,y});
 
     tb.disparar(x,y);
 }
@@ -126,22 +227,26 @@ void Jugar::crearBarcos(int cant)
         tipo = rand()% 5;
         switch(tipo){
         case 0:
+            crucero->setTipo('c');
             this->Barcos.push_back(crucero);
             break;
         case 1:
+            portaaviones->setTipo('p');
             this->Barcos.push_back(portaaviones);
             break;
         case 2:
+            destructor->setTipo('d');
             this->Barcos.push_back(destructor);
             break;
         case 3:
+            lancha->setTipo('l');
             this->Barcos.push_back(lancha);
             break;
         case 4:
+            submarino->setTipo('s');
             this->Barcos.push_back(submarino);
             break;
         }
-
     }
 }
 

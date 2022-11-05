@@ -10,6 +10,23 @@
 #include <stdlib.h>
 #include <vector>
 
+struct BarcosStr{
+    char nombre[30];
+    char num;
+    int tamanio;
+    char orientacion;
+    int vida;
+    int X;
+    int Y;
+    int id;
+    char tipo;
+};typedef struct BarcosStr BarcosStr;
+
+struct disparos
+{
+    int x;
+    int y;
+};typedef struct disparos Disparos;
 
 class Jugar
 {
@@ -18,12 +35,14 @@ protected:
 
 
 public:
+    int tamanioMat;
     bool gameOver;
     Matriz tablero1;    //user
     Matriz tablero2;    //ia
     Matriz tableroParaDisparar;    //user
     std::vector <Barco*> Barcos;
-    int disparosIA[2];
+    std::vector <std::pair<int,int>> DisparosUser;
+    std::vector <std::pair<int,int>> DisparosIA;
 
 
     Jugar();
@@ -42,6 +61,12 @@ public:
     void setTablero1(const Matriz &newTablero1);
     void setDisparosIa(int x, int y);
     int* getDisparosIa();
+    void dispararUser(int,int);
+
+    bool guardarBarcos();
+    bool guardarDisparos();
+    bool guardarJuego();
+    void cargarJuego();
 };
 
 #endif // JUGAR_H
