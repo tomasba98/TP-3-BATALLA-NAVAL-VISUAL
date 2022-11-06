@@ -129,6 +129,9 @@ border:5px solid black;
     </property>
    </widget>
    <widget class="QPushButton" name="buttonJugar">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>590</x>
@@ -160,6 +163,9 @@ color: white;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="buttonCargarPartida">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>30</x>

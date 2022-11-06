@@ -52,13 +52,6 @@ void Matriz::modificarMatriz(int x, int y, char c)
 {
     this->matriz[y][x]= c;
 }
-void Matriz::mostrarFlota()
-{
-    //    std::cout<<"\n   Barcos en flota: \n";
-    //    for (Barco b : this->cantBarcos){
-    //        std::cout<<std::setw(12)<<b.getNombre()<<"  -> "<<std::setw(7)<<"Life: "<<b.getVida()<<"/"<<b.getTamanio()<<std::endl;
-    //    }
-}
 
 
 char Matriz::submarinoHit()
@@ -136,19 +129,25 @@ bool Matriz::lugarDisponible(int posX, int posY, int tamanio, char orientacion)
     return false;
 }
 
-int Matriz::disparar(int x, int y)
-{
+void Matriz::disparar(int x, int y)
+{    
 
     if((x>0 && x<this->tamanioMatriz) && (y>0 && y<this->tamanioMatriz)){
         char caract = this->matriz[y][x];
 
         switch(caract){
-        case '~':
-            this->matriz[y][x] = 'O';
-
+        case 'X':
+            this->hit = true;
+            this->infodisparo = 1;
+            break;
+        case 'O':
             this->hit = false;
             this->infodisparo = 0;
-
+            break;
+        case '~':
+            this->matriz[y][x] = 'O';
+            this->hit = false;
+            this->infodisparo = 0;
             this->submarinoHitChar = 'K';
             break;
         case '1':
@@ -403,8 +402,7 @@ int Matriz::disparar(int x, int y)
             break;
         }
 
-    }
-    this->moverLancha();
+    }    
 }
 
 bool Matriz::lugarLancha(int posX, int posY, int tamanio, char orientacion)
@@ -443,43 +441,7 @@ bool Matriz::lugarLancha(int posX, int posY, int tamanio, char orientacion)
         }
     }else{
         return false;
-    }
-
-    //    int tamanioMatr = this->getTamanioMatriz();
-    //    int tamanioX = posX+tamanio;
-    //    int tamanioY = posY+tamanio;
-
-    //    if(((posX>0) && (posX<tamanioMatr)) && ((posY>0) && (posY<tamanioMatr))){
-    //        switch(orientacion){
-    //        case 'H':
-    //            if(tamanioX<=tamanioMatr){
-    //                for (int i=0;i<tamanio;i++){
-    //                    if((matriz[posY][posX+i] != '~')){
-    //                        return false;
-    //                    }
-    //                }
-    //            }else{
-    //                return false;
-    //            }
-
-    //            return true;
-    //            break;
-    //        case 'V':
-    //            if(tamanioY<=tamanioMatr){
-    //                for (int i=0;i<tamanio;i++){
-    //                    if((matriz[posY+i][posX] != '~')){
-    //                        return false;
-    //                    }
-    //                }
-    //            }else{
-    //                return false;
-    //            }
-    //            return true;
-    //            break;
-    //        }
-    //    }else{
-    //        return false;
-    //    }
+    }    
 }
 
 char **Matriz::getMatriz()
@@ -541,61 +503,7 @@ void Matriz::moverLancha()
                 }
             }
         }
-    }
-
-    //    for (auto b : this->cantBarcos){
-
-    //        if(b.getTamanio()==1){
-    //            bool sePudo = true;
-    //            while(sePudo){
-
-    //                int posMovimiento = rand()%(4);
-
-    //                switch(posMovimiento){
-    //                case 0:
-    //                    //ARRIBA
-    //                    if(this->lugarLancha(b.getX(), b.getY()-1, b.getTamanio(), 'V')){
-    //                        this->matriz[b.getY()][b.getX()]= '~';
-    //                        b.setY(b.getY()-1);
-    //                        b.setOrientacion('V');
-    //                        this->matriz[b.getY()][b.getX()]= '1';
-    //                        sePudo = false;
-    //                    }
-    //                    break;
-    //                case 1:
-    //                    //ABAJO
-    //                    if(this->lugarLancha(b.getX(), b.getY()+1, b.getTamanio(), 'V')){
-    //                        this->matriz[b.getY()][b.getX()]= '~';
-    //                        b.setY(b.getY()+1);
-    //                        b.setOrientacion('V');
-    //                        this->matriz[b.getY()][b.getX()]= '1';
-    //                        sePudo = false;
-    //                    }
-    //                    break;
-    //                case 2:
-    //                    //IZQUIERDA
-    //                    if(this->lugarLancha(b.getX()-1, b.getY(), b.getTamanio(), 'H')){
-    //                        this->matriz[b.getY()][b.getX()]= '~';
-    //                        b.setX(b.getX()-1);
-    //                        b.setOrientacion('H');
-    //                        this->matriz[b.getY()][b.getX()]= '1';
-    //                        sePudo = false;
-    //                    }
-    //                    break;
-    //                case 3:
-    //                    //DERECHA
-    //                    if(this->lugarLancha(b.getX()+1, b.getY(), b.getTamanio(), 'H')){
-    //                        this->matriz[b.getY()][b.getX()]= '~';
-    //                        b.setX(b.getX()+1);
-    //                        b.setOrientacion('H');
-    //                        this->matriz[b.getY()][b.getX()]= '1';
-    //                        sePudo = false;
-    //                    }
-    //                    break;
-    //                }
-    //            }
-    //        }
-    //    }
+    }   
 }
 
 void Matriz::eliminarBarco(Barco b)

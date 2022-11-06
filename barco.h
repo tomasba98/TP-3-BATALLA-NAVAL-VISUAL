@@ -16,31 +16,31 @@ private:
     char tipo;
 
 public:
-    Barco();
     Barco(char ori, int v,int x, int y, int id, char t);
-    int getTamanio() const ;
-    void setTamanio(int );
-    char getOrientacion() const ;
-    void setOrientacion(char) ;
+    Barco();
+
     int getVida() const;
-    void setVida(int newVidas);
     int getX() const;
-    void setX(int newX);
     int getY() const;
-    void setY(int newY);
+    int getTamanio() const ;
+    char getOrientacion() const ;
     char getNum() const;
+    std::string &getNombre() ;
+    int getId() const;
+    char getTipo() const;
+
+    void setTamanio(int );
+    void setOrientacion(char) ;
+    void setVida(int newVidas);
+    void setX(int newX);
+    void setY(int newY);
     void setNum(char newNum);
+    void setNombre(const std::string &newNombre);
+    void setId(int newId);
+    void setTipo(char newTipo);
 
     virtual void hit();
     virtual bool explotado();
-
-
-    std::string &getNombre() ;
-    void setNombre(const std::string &newNombre);
-    int getId() const;
-    void setId(int newId);
-    char getTipo() const;
-    void setTipo(char newTipo);
 };
 
 #endif // BARCO_H

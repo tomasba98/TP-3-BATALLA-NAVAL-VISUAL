@@ -1,12 +1,11 @@
 #include "jugar.h"
-#include "fstream"
+#include <fstream>
 #include <cstring>
 
 using namespace std;
 
 Jugar::Jugar()
 {
-    gameOver = false;
 }
 
 BarcosStr asignar(Barco it){
@@ -36,7 +35,7 @@ bool Jugar:: guardarBarcos()
 
     if(archivo1.is_open()){
 
-        for (auto it : this->tablero1.getCantBarcos()){
+        for (auto& it : this->tablero1.getCantBarcos()){
 
             b = asignar(it);
 
@@ -50,7 +49,7 @@ bool Jugar:: guardarBarcos()
     }
 
     if(archivo2.is_open()){
-        for (auto it : this->tablero2.getCantBarcos()){
+        for (auto& it : this->tablero2.getCantBarcos()){
 
             b = asignar(it);
 
@@ -123,13 +122,9 @@ bool Jugar::guardarMatriz()
 bool Jugar::guardarJuego()
 {
 
-    //    if(!this->guardarBarcos()) return false;
-    //    if(!this->guardarDisparos()) return false;
-    //    if(!this->guardarMatriz()) return false;
-
-    this->guardarBarcos();
-    this->guardarDisparos();
-    this->guardarMatriz();
+    if(!this->guardarBarcos()) return false;
+    if(!this->guardarDisparos()) return false;
+    if(!this->guardarMatriz()) return false;
 
     return true;
 }
@@ -165,7 +160,7 @@ bool Jugar::cargarBarcos()
         }
 
         for(size_t i = 0; i<vector.size(); i++){
-            this->agregarManual(vector[i],vector[i]->getX(),vector[i]->getY(),vector[i]->getOrientacion());
+            this->tablero1.agregar_barco(vector[i]);
         }
 
         archivo1.close();
@@ -253,12 +248,9 @@ void Jugar::cargarMapa(int tam)
 
 bool Jugar::cargarJuego(Matriz &tb,int t)
 {
-
     this->cargarMapa(t);
-    this->cargarBarcos();
-    this->cargarDisparos(tb);
-    //    if(!this->cargarBarcos()) return false;
-    //    if(!this->cargarDisparos(tb)) return false;
+    if(!this->cargarBarcos()) return false;
+    if(!this->cargarDisparos(tb)) return false;
 
     return true;
 }
@@ -280,15 +272,14 @@ void Jugar::setTablero1(const Matriz &newTablero1)
 
 void Jugar::dispararUser(int x, int y)
 {
-
     this->DisparosUser.push_back({x,y});
 
     this->tablero2.disparar(x, y);
+    this->copiarTableroParaDisparar(this->tablero2,x,y);
 }
 
 void Jugar::SeleccionarParametrosInicio(int cant,int tamanioMatriz)
 {
-
     this->tablero1.setTamanioMatriz(tamanioMatriz);
     this->tablero2.setTamanioMatriz(tamanioMatriz);
     this->tableroParaDisparar.setTamanioMatriz(tamanioMatriz);
@@ -369,8 +360,8 @@ void Jugar::crearBarcos(int cant)
     int tipo = 0;
 
     for(int i=0;i<cant;i++){
-        //tipo = rand()% 4;
-        tipo =  4;
+        tipo = rand()% 4;
+        //tipo =  4;
         switch(tipo){
         case 0:{
             Barco *crucero = new Crucero;

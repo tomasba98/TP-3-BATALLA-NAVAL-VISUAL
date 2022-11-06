@@ -8,7 +8,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-MainWindow::MainWindow( int Tmap,QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
+MainWindow::MainWindow( int Tmap ,QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
@@ -16,7 +16,10 @@ MainWindow::MainWindow( int Tmap,QWidget *parent) : QMainWindow(parent), ui(new 
 
     this->ui->cargaManualContainer->hide();
 
-    this->Juego.cargarJuego(this->Juego.tablero1,Tmap);
+    if(!this->Juego.cargarJuego(this->Juego.tablero1,Tmap)) QMessageBox::information(this, "ERROR", "CARGA JUEGO");
+
+    //else QMessageBox::information(this, "INFO", "JUEGO CARGADO EXITOSAMENTE");
+
 
     this->crearMapa();
     this->mostrarFlota();
@@ -44,8 +47,7 @@ MainWindow::MainWindow( int Cbarcos,int Tmap, bool alea,QWidget *parent) : QMain
     }
     else{
         this->ui->nomBarcoLabel->setText(QString::fromStdString(this->Juego.getBarcos()[this->contBarcos]->getNombre()));
-        this->ui->tamBarcoLabel_2->setText(QString::number(this->Juego.getBarcos()[this->contBarcos]->getTamanio()));
-        this->cargaManual();
+        this->ui->tamBarcoLabel_2->setText(QString::number(this->Juego.getBarcos()[this->contBarcos]->getTamanio()));        
     }
 
     this->crearMapa();
@@ -102,13 +104,12 @@ void MainWindow::on_dispararButton_clicked()
     else{
 
         //DISPARO USER        
-        this->Juego.dispararUser(x,y);
+        this->Juego.dispararUser(x,y);        
         this->infoDisparo =  this->Juego.tablero2.getInfodisparo();
         this->infoHits(1);
 
         //DISPARO IA
         this->Juego.dispararBot(this->Juego.tablero1);
-        this->Juego.copiarTableroParaDisparar(this->Juego.tablero2, x, y);
         this->infoDisparo =  this->Juego.tablero1.getInfodisparo();
         this->infoHits(2);
 
@@ -116,7 +117,8 @@ void MainWindow::on_dispararButton_clicked()
         this->ui->posYDisp->clear();
 
 
-
+        this->Juego.tablero1.moverLancha();
+        this->Juego.tablero2.moverLancha();
         this->actualizarMapa();
         this->mostrarFlota();
         this->gameOver();
@@ -150,7 +152,7 @@ void MainWindow::gameOver()
 
 void MainWindow::on_actionGuardar_triggered()
 {
-    if(!this->Juego.guardarJuego()) QMessageBox::information(this, "ERROR", "EL JUEGO NO SE PUDO GUARDAR");
+    if(this->Juego.guardarJuego()) QMessageBox::information(this, "ERROR", "EL JUEGO NO SE PUDO GUARDAR");
     else QMessageBox::information(this, "INFO", "JUEGO GUARDADO EXITOSAMENTE");
 }
 
@@ -188,18 +190,6 @@ void MainWindow::setAleatorios(bool newAleatorios)
 
 //FUNCIONES---------------------------------------------
 
-void MainWindow::cargaManual()
-{
-    //    for (auto itBarco : this->Juego.getBarcos()){
-
-    //    }
-
-    //    for(Barco *b :this->Juego.Barcos){
-    //        this->ui->nomBarcoLabel->setText(QString::fromStdString(b->getNombre()));
-    //        this->ui->tamBarcoLabel_2->setText(QString::number(b->getTamanio()));
-
-    //    }
-}
 
 void MainWindow::crearMapa()
 {
@@ -251,7 +241,8 @@ void MainWindow::actualizarMapa()
     }
 
     //TABLERO IA
-    char** matriz2 = this->Juego.tablero2.getMatriz();
+    //char** matriz2 = this->Juego.tablero2.getMatriz();
+    char** matriz2 = this->Juego.tableroParaDisparar.getMatriz();
 
     for (int i = 0; i < cantidad; i++) {
         for (int j = 0; j < cantidad; j++) {

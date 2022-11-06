@@ -16,21 +16,18 @@ CargaWindow::~CargaWindow()
 
 void CargaWindow::on_buttonJugar_clicked()
 {
-    if(this->ui->labelCantBarcos->text().isEmpty() || this->ui->labelTamMatr->text().isEmpty()){
-        QMessageBox::information(this, "ALERTA", "COMPLETE LOS CAMPOS");
-    } 
+    if(this->ui->setCantBarc->text().isEmpty() || this->ui->setTamMatr->text().isEmpty()){
+            QMessageBox::information(this, "ALERTA", "COMPLETE LOS CAMPOS");
+        }else if(!this->ui->setCantBarc->text().isEmpty() && !this->ui->setTamMatr->text().isEmpty()){
+            int cantBarc = this->ui->setCantBarc->text().toInt();
+            int tamMap = this->ui->setTamMatr->text().toInt();
+            bool aleatorio = this->ui->checkBoxAleatorios->isChecked();
 
-
-    int cantBarc = this->ui->setCantBarc->text().toInt();
-    int tamMap = this->ui->setTamMatr->text().toInt();
-    bool aleatorio = this->ui->checkBoxAleatorios->isChecked();
-
-    this->hide();
-    this->pantallaJuego = new MainWindow(cantBarc,tamMap,aleatorio);
-    this->pantallaJuego->show();   
-
+            this->hide();
+            this->pantallaJuego = new MainWindow(cantBarc,tamMap,aleatorio);
+            this->pantallaJuego->show();
+        }
 }
-
 
 void CargaWindow::on_buttonCargarPartida_clicked()
 {

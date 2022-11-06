@@ -31,37 +31,37 @@ struct disparos
 
 class Jugar
 {
-protected:
 
 public:
-    bool gameOver;
     Matriz tablero1;    //user
     Matriz tablero2;    //ia
-    Matriz tableroParaDisparar;    //user    
+    Matriz tableroParaDisparar;    //user
+
     std::vector <Barco*> Barcos;
     std::vector <std::pair<int,int>> DisparosUser;
     std::vector <std::pair<int,int>> DisparosIA;
 
-
     Jugar();
+
     void repetidorAleatorio();
     void agregarAleatoriosIA();
     void agregarAleatorios(Matriz &tb, Barco *barco);
     void agregarManual(Barco *barco,int,int,char);
     void dispararBot(Matriz &tb);
-    void jugar();
-    void crearBarcos(int );
+    void crearBarcos(int);
     void copiarTableroParaDisparar(Matriz &,int , int );
     void cleanWindows();
     void SeleccionarParametrosInicio(int,int);
-    const std::vector<Barco *> &getBarcos() const;
-    const Matriz &getTablero1() const;
-    void setTablero1(const Matriz &newTablero1);
-    void setDisparosIa(int x, int y);
-    int* getDisparosIa();
     void dispararUser(int,int);
     bool guardarJuego();
     bool cargarJuego(Matriz &tb,int);
+
+    void setDisparosIa(int x, int y);
+    void setTablero1(const Matriz &newTablero1);
+
+    int* getDisparosIa();
+    const std::vector<Barco *> &getBarcos() const;
+    const Matriz &getTablero1() const;
 
 private slots:
     bool guardarBarcos();

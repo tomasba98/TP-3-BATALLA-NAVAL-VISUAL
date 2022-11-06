@@ -7,8 +7,6 @@ class Lancha : public Barco
 public:
     Lancha();
     Lancha(char ori, int v,int x, int y, int id, char t);
-
-
 };
 
 #endif // LANCHA_H
