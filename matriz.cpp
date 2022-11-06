@@ -515,7 +515,6 @@ void Matriz::eliminarBarco(Barco b)
         }
     }
     this->cantBarcos = aux;
-    //aux.end();
     this->numBarcos--;
 }
 

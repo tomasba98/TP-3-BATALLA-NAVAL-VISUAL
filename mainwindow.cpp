@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-//METODOS-----------------------
-
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -17,9 +15,6 @@ MainWindow::MainWindow( int Tmap ,QWidget *parent) : QMainWindow(parent), ui(new
     this->ui->cargaManualContainer->hide();
 
     if(!this->Juego.cargarJuego(this->Juego.tablero1,Tmap)) QMessageBox::information(this, "ERROR", "CARGA JUEGO");
-
-    //else QMessageBox::information(this, "INFO", "JUEGO CARGADO EXITOSAMENTE");
-
 
     this->crearMapa();
     this->mostrarFlota();
@@ -128,14 +123,6 @@ void MainWindow::on_dispararButton_clicked()
 
 void MainWindow::gameOver()
 {
-
-//    QMessageBox msgBox;
-//    msgBox.setText("The document has been modified.");
-//    msgBox.setStandardButtons(QMessageBox::Close );
-//    //msgBox.buttonClicked();
-//    msgBox.exec();
-
-
     if(this->Juego.tablero1.getNumBarcos()==0 && this->Juego.tablero2.getNumBarcos()==0){
         QMessageBox::information(this, "EMPATE", "LOS 2 SON MUY BUENOS!!!");
         exit(0);
@@ -186,10 +173,6 @@ void MainWindow::setAleatorios(bool newAleatorios)
 {
     aleatorios = newAleatorios;
 }
-
-
-//FUNCIONES---------------------------------------------
-
 
 void MainWindow::crearMapa()
 {

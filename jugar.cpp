@@ -113,10 +113,13 @@ bool Jugar::guardarMatriz()
 
 
         archivo.close();
+        return true;
 
     }else{
         return false;
     }
+
+    return true;
 }
 
 bool Jugar::guardarJuego()
@@ -124,7 +127,7 @@ bool Jugar::guardarJuego()
 
     if(!this->guardarBarcos()) return false;
     if(!this->guardarDisparos()) return false;
-    if(!this->guardarMatriz()) return false;
+    if(this->guardarMatriz()) return false;
 
     return true;
 }
@@ -361,7 +364,6 @@ void Jugar::crearBarcos(int cant)
 
     for(int i=0;i<cant;i++){
         tipo = rand()% 4;
-        //tipo =  4;
         switch(tipo){
         case 0:{
             Barco *crucero = new Crucero;
