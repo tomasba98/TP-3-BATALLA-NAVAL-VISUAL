@@ -36,9 +36,9 @@ bool Jugar:: guardarBarcos()
 
     if(archivo1.is_open()){
 
-        for (auto& it : this->tablero1.getCantBarcos()){
+        for (auto it : this->tablero1.getCantBarcos()){
 
-            b = asignar(it);
+            b = asignar(*it);
 
             archivo1.write((char*)&b,sizeof(BarcosStr));
         }
@@ -50,9 +50,9 @@ bool Jugar:: guardarBarcos()
     }
 
     if(archivo2.is_open()){
-        for (auto& it : this->tablero2.getCantBarcos()){
+        for (auto it : this->tablero2.getCantBarcos()){
 
-            b = asignar(it);
+            b = asignar(*it);
 
             archivo2.write((char*)&b,sizeof(BarcosStr));
         }
@@ -110,7 +110,7 @@ bool Jugar::guardarMatriz()
 
     if(archivo.is_open()){
 
-            archivo.write((char*)&tam,sizeof(int));
+        archivo.write((char*)&tam,sizeof(int));
 
 
         archivo.close();
@@ -123,9 +123,9 @@ bool Jugar::guardarMatriz()
 bool Jugar::guardarJuego()
 {
 
-//    if(!this->guardarBarcos()) return false;
-//    if(!this->guardarDisparos()) return false;
-//    if(!this->guardarMatriz()) return false;
+    //    if(!this->guardarBarcos()) return false;
+    //    if(!this->guardarDisparos()) return false;
+    //    if(!this->guardarMatriz()) return false;
 
     this->guardarBarcos();
     this->guardarDisparos();
@@ -144,11 +144,11 @@ bool Jugar::cargarBarcos()
     fstream archivo2("Barcos2.bin", ios::binary | ios::in);
 
 
-//    Barco *crucero;
-//    Barco *portaaviones;
-//    Barco *destructor;
-//    Barco *lancha;
-//    Barco *submarino;
+    //    Barco *crucero;
+    //    Barco *portaaviones;
+    //    Barco *destructor;
+    //    Barco *lancha;
+    //    Barco *submarino;
 
 
     if(archivo1.is_open()){     //char ori, int v,int x, int y, int id, char t
@@ -265,12 +265,11 @@ bool Jugar::cargarJuego(Matriz &tb,int t)
     this->cargarMapa(t);
     this->cargarBarcos();
     this->cargarDisparos(tb);
-//    if(!this->cargarBarcos()) return false;
-//    if(!this->cargarDisparos(tb)) return false;
+    //    if(!this->cargarBarcos()) return false;
+    //    if(!this->cargarDisparos(tb)) return false;
 
     return true;
 }
-
 const std::vector<Barco *> &Jugar::getBarcos() const
 {
     return Barcos;
@@ -292,6 +291,7 @@ void Jugar::dispararUser(int x, int y)
     this->DisparosUser.push_back({x,y});
 
     this->tablero2.disparar(x, y);
+    this->tablero2.getDisparos().push_back({x,y});
 }
 
 void Jugar::SeleccionarParametrosInicio(int cant,int tamanioMatriz)
@@ -369,6 +369,7 @@ void Jugar::dispararBot(Matriz &tb)
     int y = rand()%tm+1;
 
     this->DisparosIA.push_back({x,y});
+    tb.getDisparos().push_back({x,y});
 
     tb.disparar(x,y);
 }
@@ -377,35 +378,41 @@ void Jugar::crearBarcos(int cant)
 {
     int tipo = 0;
 
-    Barco *crucero = new Crucero;
-    Barco *portaaviones = new Portaaviones;
-    Barco *destructor = new Destructor;
-    Barco *lancha = new Lancha;
-    Barco *submarino = new Submarino;
-
     for(int i=0;i<cant;i++){
-        tipo = rand()% 5;
+        //tipo = rand()% 5;
+        tipo = 3;
         switch(tipo){
-        case 0:
+        case 0:{
+            Barco *crucero = new Crucero;
             crucero->setTipo('c');
             this->Barcos.push_back(crucero);
             break;
-        case 1:
+        }
+        case 1:{
+            Barco *portaaviones = new Portaaviones;
             portaaviones->setTipo('p');
             this->Barcos.push_back(portaaviones);
             break;
-        case 2:
+        }
+        case 2:{
+            Barco *destructor = new Destructor;
             destructor->setTipo('d');
             this->Barcos.push_back(destructor);
             break;
-        case 3:
+        }
+
+        case 3:{
+            Barco *lancha = new Lancha;
             lancha->setTipo('l');
             this->Barcos.push_back(lancha);
             break;
-        case 4:
+        }
+        case 4:{
+            Barco *submarino = new Submarino;
             submarino->setTipo('s');
             this->Barcos.push_back(submarino);
             break;
+        }
         }
     }
 }

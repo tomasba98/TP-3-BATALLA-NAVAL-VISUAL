@@ -19,7 +19,6 @@ MainWindow::MainWindow( int Tmap,QWidget *parent) : QMainWindow(parent), ui(new 
     this->Juego.cargarJuego(this->Juego.tablero1,Tmap);
 
     this->crearMapa();
-    this->mostrarFlota();
 
     // dejar en blanco los textLabel de la tabla de disparos
     this->ui->labelInfoDisparoUser->clear();
@@ -49,7 +48,6 @@ MainWindow::MainWindow( int Cbarcos,int Tmap, bool alea,QWidget *parent) : QMain
     }
 
     this->crearMapa();
-
 
     // dejar en blanco los textLabel de la tabla de disparos
     this->ui->labelInfoDisparoUser->clear();
@@ -285,9 +283,9 @@ void MainWindow::mostrarFlota()
 
     for(int i=0;i<this->cantBarcos;i++){
 
-        nomBarco = this->Juego.tablero1.getCantBarcos()[i].getNombre();
-        vida = this->Juego.tablero1.getCantBarcos()[i].getVida();
-        tam = this->Juego.tablero1.getCantBarcos()[i].getTamanio();
+        nomBarco = this->Juego.tablero1.getCantBarcos()[i]->getNombre();
+        vida = this->Juego.tablero1.getCantBarcos()[i]->getVida();
+        tam = this->Juego.tablero1.getCantBarcos()[i]->getTamanio();
 
         QString QnomBarco = QString::fromStdString(nomBarco) + "        " + QString::number(vida)+ "/" + QString::number(tam);
 
@@ -298,9 +296,9 @@ void MainWindow::mostrarFlota()
 
     for(int i=0;i<this->cantBarcos;i++){
 
-        nomBarco = this->Juego.tablero2.getCantBarcos()[i].getNombre();
-        vida = this->Juego.tablero2.getCantBarcos()[i].getVida();
-        tam = this->Juego.tablero2.getCantBarcos()[i].getTamanio();
+        nomBarco = this->Juego.tablero2.getCantBarcos()[i]->getNombre();
+        vida = this->Juego.tablero2.getCantBarcos()[i]->getVida();
+        tam = this->Juego.tablero2.getCantBarcos()[i]->getTamanio();
 
         QString QnomBarco = QString::fromStdString(nomBarco) + "        " + QString::number(vida)+ "/" + QString::number(tam);
 

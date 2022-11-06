@@ -33,7 +33,7 @@ class Jugar
 {
 protected:
 
-public:
+public:    
     bool gameOver;
     Matriz tablero1;    //user
     Matriz tablero2;    //ia
