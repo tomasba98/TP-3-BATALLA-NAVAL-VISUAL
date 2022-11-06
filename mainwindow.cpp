@@ -16,7 +16,7 @@ MainWindow::MainWindow( int Tmap,QWidget *parent) : QMainWindow(parent), ui(new 
 
     this->ui->cargaManualContainer->hide();
 
-    this->Juego.cargarJuego(this->Juego.tablero1);
+    this->Juego.cargarJuego(this->Juego.tablero1,Tmap);
 
     this->crearMapa();
 

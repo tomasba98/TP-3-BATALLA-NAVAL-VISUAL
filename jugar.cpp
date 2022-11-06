@@ -123,9 +123,13 @@ bool Jugar::guardarMatriz()
 bool Jugar::guardarJuego()
 {
 
-    if(!this->guardarBarcos()) return false;
-    if(!this->guardarDisparos()) return false;
-    if(!this->guardarMatriz()) return false;
+//    if(!this->guardarBarcos()) return false;
+//    if(!this->guardarDisparos()) return false;
+//    if(!this->guardarMatriz()) return false;
+
+    this->guardarBarcos();
+    this->guardarDisparos();
+    this->guardarMatriz();
 
     return true;
 }
@@ -238,11 +242,24 @@ bool Jugar::cargarDisparos(Matriz &tb )
     return true;
 }
 
-bool Jugar::cargarJuego(Matriz &tb)
+void Jugar::cargarMapa(int tam)
+{
+    this->tablero1.setTamanioMatriz(tam);
+    this->tablero2.setTamanioMatriz(tam);
+    this->tableroParaDisparar.setTamanioMatriz(tam);
+    this->tablero1.crear_matriz();
+    this->tablero2.crear_matriz();
+    this->tableroParaDisparar.crear_matriz();
+}
+
+bool Jugar::cargarJuego(Matriz &tb,int t)
 {
 
-    if(!this->cargarBarcos()) return false;
-    if(!this->cargarDisparos(tb)) return false;
+    this->cargarMapa(t);
+    !this->cargarBarcos();
+    !this->cargarDisparos(tb);
+//    if(!this->cargarBarcos()) return false;
+//    if(!this->cargarDisparos(tb)) return false;
 
     return true;
 }

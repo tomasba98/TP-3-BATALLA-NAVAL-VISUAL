@@ -61,7 +61,7 @@ public:
     int* getDisparosIa();
     void dispararUser(int,int);
     bool guardarJuego();
-    bool cargarJuego(Matriz &tb);
+    bool cargarJuego(Matriz &tb,int);
 
 private slots:
     bool guardarBarcos();
@@ -70,6 +70,7 @@ private slots:
 
     bool cargarBarcos();
     bool cargarDisparos(Matriz &tb);
+    void cargarMapa(int tam);
 
 };
 
