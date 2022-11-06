@@ -13,8 +13,8 @@ BarcosStr asignar(Barco it){
     BarcosStr b;
 
     b.X = it.getX();
-    b.Y - it.getY();
-    strcpy(b.nombre,it.getNombre().c_str());
+    b.Y = it.getY();
+    strcpy_s(b.nombre,it.getNombre().c_str());
     b.num = it.getNum();
     b.orientacion = it.getOrientacion();
     b.vida = it.getVida();
@@ -36,7 +36,7 @@ bool Jugar:: guardarBarcos()
 
     if(archivo1.is_open()){
 
-        for (auto it : this->tablero1.getCantBarcos()){
+        for (auto& it : this->tablero1.getCantBarcos()){
 
             b = asignar(it);
 
@@ -50,7 +50,7 @@ bool Jugar:: guardarBarcos()
     }
 
     if(archivo2.is_open()){
-        for (auto it : this->tablero2.getCantBarcos()){
+        for (auto& it : this->tablero2.getCantBarcos()){
 
             b = asignar(it);
 
@@ -140,8 +140,15 @@ bool Jugar::cargarBarcos()
 
     std::vector<Barco*> vector;
 
-    fstream archivo1("Disparos1.bin", ios::binary | ios::in);
-    fstream archivo2("Disparos2.bin", ios::binary | ios::in);
+    fstream archivo1("Barcos1.bin", ios::binary | ios::in);
+    fstream archivo2("Barcos2.bin", ios::binary | ios::in);
+
+
+//    Barco *crucero;
+//    Barco *portaaviones;
+//    Barco *destructor;
+//    Barco *lancha;
+//    Barco *submarino;
 
 
     if(archivo1.is_open()){     //char ori, int v,int x, int y, int id, char t
@@ -166,7 +173,7 @@ bool Jugar::cargarBarcos()
         }
 
         for(size_t i = 0; i<vector.size(); i++){
-            this->tablero1.agregar_barco(vector[i]);
+            this->agregarManual(vector[i],vector[i]->getX(),vector[i]->getY(),vector[i]->getOrientacion());
         }
 
         archivo1.close();
@@ -213,8 +220,8 @@ bool Jugar::cargarDisparos(Matriz &tb )
 {
     Disparos dis;
 
-    fstream archivo1("Disparos1.bin", ios::binary | ios::out | ios::trunc);
-    fstream archivo2("Disparos2.bin", ios::binary | ios::out | ios::trunc);
+    fstream archivo1("Disparos1.bin", ios::binary | ios::in );
+    fstream archivo2("Disparos2.bin", ios::binary | ios::in );
 
 
     if(archivo1.is_open()){
@@ -256,8 +263,8 @@ bool Jugar::cargarJuego(Matriz &tb,int t)
 {
 
     this->cargarMapa(t);
-    !this->cargarBarcos();
-    !this->cargarDisparos(tb);
+    this->cargarBarcos();
+    this->cargarDisparos(tb);
 //    if(!this->cargarBarcos()) return false;
 //    if(!this->cargarDisparos(tb)) return false;
 

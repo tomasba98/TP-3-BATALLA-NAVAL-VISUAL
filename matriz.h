@@ -38,7 +38,7 @@ public:
     void setMatriz(char **newMatriz);
     int getInfodisparo() const;
     void setInfodisparo(int newInfodisparo);
-    const std::vector<Barco> &getCantBarcos() const;
+     std::vector<Barco> &getCantBarcos();
     void setCantBarcos(const std::vector<Barco> &newCantBarcos);
 };
 

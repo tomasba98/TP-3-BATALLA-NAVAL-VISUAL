@@ -18,7 +18,7 @@ void Matriz::setInfodisparo(int newInfodisparo)
     infodisparo = newInfodisparo;
 }
 
-const std::vector<Barco> &Matriz::getCantBarcos() const
+ std::vector<Barco> &Matriz::getCantBarcos()
 {
     return cantBarcos;
 }

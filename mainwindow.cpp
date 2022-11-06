@@ -19,6 +19,7 @@ MainWindow::MainWindow( int Tmap,QWidget *parent) : QMainWindow(parent), ui(new 
     this->Juego.cargarJuego(this->Juego.tablero1,Tmap);
 
     this->crearMapa();
+    this->mostrarFlota();
 
     // dejar en blanco los textLabel de la tabla de disparos
     this->ui->labelInfoDisparoUser->clear();
@@ -48,6 +49,7 @@ MainWindow::MainWindow( int Cbarcos,int Tmap, bool alea,QWidget *parent) : QMain
     }
 
     this->crearMapa();
+
 
     // dejar en blanco los textLabel de la tabla de disparos
     this->ui->labelInfoDisparoUser->clear();
