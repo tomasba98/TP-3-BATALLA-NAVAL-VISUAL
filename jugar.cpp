@@ -38,7 +38,7 @@ bool Jugar:: guardarBarcos()
 
         for (auto it : this->tablero1.getCantBarcos()){
 
-            b = asignar(*it);
+            b = asignar(it);
 
             archivo1.write((char*)&b,sizeof(BarcosStr));
         }
@@ -52,7 +52,7 @@ bool Jugar:: guardarBarcos()
     if(archivo2.is_open()){
         for (auto it : this->tablero2.getCantBarcos()){
 
-            b = asignar(*it);
+            b = asignar(it);
 
             archivo2.write((char*)&b,sizeof(BarcosStr));
         }
@@ -142,14 +142,6 @@ bool Jugar::cargarBarcos()
 
     fstream archivo1("Barcos1.bin", ios::binary | ios::in);
     fstream archivo2("Barcos2.bin", ios::binary | ios::in);
-
-
-    //    Barco *crucero;
-    //    Barco *portaaviones;
-    //    Barco *destructor;
-    //    Barco *lancha;
-    //    Barco *submarino;
-
 
     if(archivo1.is_open()){     //char ori, int v,int x, int y, int id, char t
         while(archivo1.read((char*)&b,sizeof(BarcosStr))){
@@ -270,6 +262,7 @@ bool Jugar::cargarJuego(Matriz &tb,int t)
 
     return true;
 }
+
 const std::vector<Barco *> &Jugar::getBarcos() const
 {
     return Barcos;
@@ -291,7 +284,6 @@ void Jugar::dispararUser(int x, int y)
     this->DisparosUser.push_back({x,y});
 
     this->tablero2.disparar(x, y);
-    this->tablero2.getDisparos().push_back({x,y});
 }
 
 void Jugar::SeleccionarParametrosInicio(int cant,int tamanioMatriz)
@@ -312,14 +304,14 @@ void Jugar::SeleccionarParametrosInicio(int cant,int tamanioMatriz)
 
 void Jugar::repetidorAleatorio()
 {
-    for(Barco *b : this->Barcos){
+    for(auto b : this->Barcos){
         agregarAleatorios(this->tablero1,b);
     }
 }
 
 void Jugar::agregarAleatoriosIA()
 {
-    for(Barco *b : this->Barcos){
+    for(auto b : this->Barcos){
         agregarAleatorios(this->tablero2,b);
     }
 }
@@ -358,7 +350,6 @@ void Jugar::agregarManual( Barco *barco,int x,int y,char orientacion)
     barco->setY(y);
     barco->setOrientacion(orientacion);
     this->tablero1.agregar_barco(barco);
-
 }
 
 void Jugar::dispararBot(Matriz &tb)
@@ -369,7 +360,6 @@ void Jugar::dispararBot(Matriz &tb)
     int y = rand()%tm+1;
 
     this->DisparosIA.push_back({x,y});
-    tb.getDisparos().push_back({x,y});
 
     tb.disparar(x,y);
 }
@@ -379,8 +369,8 @@ void Jugar::crearBarcos(int cant)
     int tipo = 0;
 
     for(int i=0;i<cant;i++){
-        //tipo = rand()% 5;
-        tipo = 3;
+        //tipo = rand()% 4;
+        tipo =  4;
         switch(tipo){
         case 0:{
             Barco *crucero = new Crucero;
@@ -394,27 +384,25 @@ void Jugar::crearBarcos(int cant)
             this->Barcos.push_back(portaaviones);
             break;
         }
-        case 2:{
-            Barco *destructor = new Destructor;
+        case 2:{Barco *destructor = new Destructor;
             destructor->setTipo('d');
             this->Barcos.push_back(destructor);
             break;
         }
-
         case 3:{
-            Barco *lancha = new Lancha;
-            lancha->setTipo('l');
-            this->Barcos.push_back(lancha);
-            break;
-        }
-        case 4:{
             Barco *submarino = new Submarino;
             submarino->setTipo('s');
             this->Barcos.push_back(submarino);
             break;
         }
+        case 4:{
+            Barco *lancha = new Lancha;
+            lancha->setTipo('l');
+            this->Barcos.push_back(lancha);
+        }
         }
     }
+
 }
 
 void Jugar::copiarTableroParaDisparar(Matriz &tb2,int x, int y)

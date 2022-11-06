@@ -37,7 +37,7 @@ void Barco::setId(int newId)
 }
 
 
-const std::string &Barco::getNombre() const
+ std::string &Barco::getNombre()
 {
     return nombre;
 }

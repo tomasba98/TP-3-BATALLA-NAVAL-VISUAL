@@ -1,14 +1,12 @@
 #include "cargawindow.h"
 #include "ui_cargawindow.h"
-#include "fstream"
+#include <fstream>
 
 CargaWindow::CargaWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::CargaWindow)
 {
     ui->setupUi(this);
-    //ui->setTamMatr->setPlaceholderText(QStringLiteral("TAMANIO MAPA"));
-    //ui->setCantBarc->setPlaceholderText(QStringLiteral("CANT BARCOS"));
 }
 
 CargaWindow::~CargaWindow()

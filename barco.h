@@ -23,7 +23,7 @@ public:
     char getOrientacion() const ;
     void setOrientacion(char) ;
     int getVida() const;
-    void setVida(int newVidas);    
+    void setVida(int newVidas);
     int getX() const;
     void setX(int newX);
     int getY() const;
@@ -35,7 +35,7 @@ public:
     virtual bool explotado();
 
 
-    const std::string &getNombre() const;
+    std::string &getNombre() ;
     void setNombre(const std::string &newNombre);
     int getId() const;
     void setId(int newId);

@@ -33,11 +33,11 @@ class Jugar
 {
 protected:
 
-public:    
+public:
     bool gameOver;
     Matriz tablero1;    //user
     Matriz tablero2;    //ia
-    Matriz tableroParaDisparar;    //user
+    Matriz tableroParaDisparar;    //user    
     std::vector <Barco*> Barcos;
     std::vector <std::pair<int,int>> DisparosUser;
     std::vector <std::pair<int,int>> DisparosIA;

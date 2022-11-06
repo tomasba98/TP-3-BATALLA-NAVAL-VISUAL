@@ -35,6 +35,8 @@ public:
 
     void mostrarFlota();
 
+    void gameOver();
+
 protected:
 
     QLabel *** tablero1;
@@ -47,6 +49,7 @@ protected:
     int tamMapa;
     int cantBarcos;
     bool aleatorios = true;
+    bool gameover = false;
 private slots:
     void on_agregarButton_clicked();
     void on_dispararButton_clicked();    
